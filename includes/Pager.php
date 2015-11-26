@@ -1,23 +1,24 @@
-<?
+<?php
 /**
- * Pager_inc.php stores Pager class for paging records
- * 
+ * Pager.php stores a class named Pager for paginating records
+ *
  * The Pager class creates simple records paging by deconstructing the existing 
  * SQL statement and adding MySQL limits to the statement.
  * 
- * Once the Pager object is loaded with the SQL statement, a method named 'showTotal()' 
+ * Once the object is loaded with the SQL statement, a method named 'showTotal()' 
  * returns the possible number of records, and another named 'showNav()' places the 
  * Paging Nav (next & previous arrows, etc.) on the page.
  *
- * 3/4/2012 - removed rc, record count being stored on querystring
- *
  * @package nmPager
  * @author Bill Newman <williamnewman@gmail.com>
- * @version 3.03 2012/03/04
- * @link http://www.newmanix.com/ 
- * @license http://opensource.org/licenses/osl-3.0.php Open Software License ("OSL") v. 3.0
+ * @version 3.2 2015/11/24
+ * @link http://www.newmanix.com/
+ * @license http://www.apache.org/licenses/LICENSE-2.0 v. 3.0
+ * @see MyAutoLoader.php
+ * @see Pager.php 
  * @todo none
  */
+
 
 class Pager
 {

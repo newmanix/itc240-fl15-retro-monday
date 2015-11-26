@@ -1,21 +1,17 @@
 <?php
 /**
- * demo_list_pager.php along with demo_view_pager.php provides a sample web application
- *
- * The difference between demo_list.php and demo_list_pager.php is the reference to the 
- * Pager class which processes a mysqli SQL statement and spans records across multiple  
- * pages. 
- *
- * The associated view page, demo_view_pager.php is virtually identical to demo_view.php. 
- * The only difference is the pager version links to the list pager version to create a 
- * separate application from the original list/view. 
+ * demo_list_pager.php demonstrates a list page that paginates data across 
+ * multiple pages
+ * 
+ * This page uses a Pager class which processes a mysqli SQL statement 
+ * and spans records across multiple pages. 
  * 
  * @package nmPager
  * @author Bill Newman <williamnewman@gmail.com>
- * @version 3.02 2011/05/18
+ * @version 3.2 2015/11/24
  * @link http://www.newmanix.com/
- * @license http://opensource.org/licenses/osl-3.0.php Open Software License ("OSL") v. 3.0
- * @see demo_view_pager.php
+ * @license http://www.apache.org/licenses/LICENSE-2.0 v. 3.0
+ * @see MyAutoLoader.php
  * @see Pager.php 
  * @todo none
  */
@@ -23,8 +19,6 @@
 require 'includes/config.php'; #provides configuration, pathing, error handling, db credentials 
  
 # SQL statement
-//$sql = "select MuffinName, MuffinID, Price from test_Muffins";
-
 $sql = "select * from test_Customers";
 
 #Fills <title> tag  
@@ -57,16 +51,20 @@ $result = mysqli_query($iConn,$sql) or die(myerror(__FILE__,__LINE__,mysqli_erro
 if(mysqli_num_rows($result) > 0)
 {#records exist - process
 	if($myPager->showTotal()==1){$itemz = "customer";}else{$itemz = "customers";}  //deal with plural
-    echo '<div align="center">We have ' . $myPager->showTotal() . ' ' . $itemz . '!</div>';
+    echo '<p align="center">We have ' . $myPager->showTotal() . ' ' . $itemz . '!</p>';
 	while($row = mysqli_fetch_assoc($result))
 	{# process each row
-         echo '<div align="center">
+         echo '<p align="center">
             <a href="' . VIRTUAL_PATH . 'customer_view.php?id=' . (int)$row['CustomerID'] . '">' . dbOut($row['FirstName']) . '</a>
-            </div>';
+            </p>';
 	}
-	echo $myPager->showNAV(); # show paging nav, only if enough records	 
+	//the showNAV() method defaults to a div, which blows up in our design
+    echo $myPager->showNAV();//show pager if enough records 
+    
+    //the version below adds the optional bookends to remove the div design problem
+    //echo $myPager->showNAV('<p align="center">','</p>');
 }else{#no records
-    echo "<div align=center>What! No Customers?  There must be a mistake!!</div>";	
+    echo "<p align=center>What! No Customers?  There must be a mistake!!</p>";	
 }
 @mysqli_free_result($result);
 @mysqli_close($iConn);
