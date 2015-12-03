@@ -4,6 +4,7 @@
 	<title><?=$title?></title>
 	<meta charset="utf-8">
 	<link href="css/style.css" rel="stylesheet" type="text/css">
+    <?=$loadhead?>
 </head>
 <body>
 	<div id="header">
@@ -36,4 +37,5 @@
 		<div id="content">
 			<div>
 				<div>
+                    <?=showFeedback()?>
                     <!-- header ends here -->

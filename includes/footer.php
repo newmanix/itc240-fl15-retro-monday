@@ -10,7 +10,7 @@
 					<h2>Delivery Hotline</h2>
 					<h3>Call 0-123-456-789</h3>
 					<ul>
-						<li>
+                        <li>
 							<a href="http://www.freewebsitetemplates.com/go/facebook" class="facebook"></a>
 						</li>
 						<li>
@@ -24,7 +24,8 @@
 				<li>
 					<a href="index.html"><img class="logo" src="images/logo-footer.png" alt=""></a>
 					<ul class="navigation">
-						<li>
+						<?=$adminWidget;?>
+                        <li>
 							<a href="index.html">Home</a>
 						</li>
 						<li>
@@ -49,5 +50,6 @@
 			</ul>
 		</div>
 	</div>
+    <?=$loadfoot?>
 </body>
 </html>
